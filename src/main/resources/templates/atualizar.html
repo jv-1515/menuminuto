@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cadastro</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 320px;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;           
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            resize: none;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #FE8601;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #db5603;
+        }
+
+        body {
+            background: linear-gradient(135deg, #101E92 50%, #0d1773 50%);
+        }
+
+        .logo {
+            height: 100px;
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+            justify-content: space-between;
+        }
+
+        p input[type="text"]:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <form th:action="@{'/atualizar/' + ${id}}" method="post" th:object="${cliente}"> 
+        <div style="position: relative;">
+            <a th:href="@{/admin}" style="position: absolute; top: 0; right: 0; font-size: 24px; text-decoration: none;">&times;</a>
+        </div>
+        <br>
+        <h2>Atualizar informações</h2>
+            
+        Nome: <input type="text" th:field="*{nome}"><br>
+        Email: <input type="email" th:field="*{email}"><br>
+        Senha: <input type="text" th:field="*{senha}"><br>
+        
+        <input type="submit" value="Atualizar" name="atualizar">
+    </form>
+</body>
+</html>

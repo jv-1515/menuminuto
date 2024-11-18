@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <title>Listagem de Clientes</title>
+        <link rel="stylesheet" href="./css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />        
+    </head>
+    <body>
+      <header>
+        <nav>
+            <img class="logo" src="./images/logo.png" height="60px" width="60px">
+            <ul>
+                <li><a th:href="@{/admin}">Voltar</a></li> 
+                <li><a th:href="@{/}">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+        <style>
+            input[type="text"] {
+                width: 80%;
+                max-width: 800px;
+                margin: 20px auto;
+                border-collapse: collapse;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;
+                padding: 12px;
+                display: flex;
+                border: none;
+                justify-content: center;
+            }
+        </style>
+
+        <div class="search-container">
+            <input type="text" id="nome" placeholder="Pesquisar usuários..." onkeyup="searchTable()" class="search-bar">
+            <span class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+        </div>
+        
+        <style>
+            .search-container {
+                position: relative;
+                width: 80%;
+                max-width: 800px;
+                margin: 20px auto;
+            }
+        
+            input[type="text"] {
+                width: 100%;
+                padding: 12px 40px 12px 12px; /* Adicionando espaço à direita para o ícone */
+                border: 1px solid #ddd;
+                background-color: #fff;
+                border-radius: 8px;
+                font-size: 16px;
+            }
+        
+            .search-icon {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
+        </style>
+     
+    
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Senha</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tbl">
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.id}"></td>
+                    <td th:text="${cliente.nome}"></td>
+                    <td th:text="${cliente.email}"></td>
+                    <td th:text="${cliente.senha}"></td>
+                    <td>
+                      <a th:href="@{'/atualizar/' + ${cliente.id}}" style="text-decoration:none" class="editar" title="Editar"><i class="fa-solid fa-pencil" style="text-decoration:none"></i></a>
+                      <form th:action="@{'/deletar/' + ${cliente.id}}" method="post" style="display:inline">
+                          <button type="submit" class="excluir" title="Excluir" onclick="confirmDelete(event, this)"><i class="fa-solid fa-trash"></i></button>
+                      </form>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            function confirmDelete(event, button) {
+                event.preventDefault();
+                const form = button.closest("form");
+                Swal.fire({
+                    title: "Tem certeza?",
+                    text: "Essa ação não poderá ser desfeita!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "red",
+                    cancelButtonColor: "blue",
+                    confirmButtonText: "Excluir usuário",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    } else {
+                        Swal.fire({
+                            title: "Cancelado",
+                            text: "O cliente não foi excluído!",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+        </script> 
+        <script>
+
+        // Função para filtrar usuários na tabela
+        function searchTable() { 
+            const input = document.getElementById("nome"); 
+            const table = document.getElementById("tbl");
+            const rows = table.getElementsByTagName("tr");
+            const filter = input.value.toLowerCase(); 
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName("td");  
+                let match = false;
+                for (let j = 0; j < cells.length; j++) {
+                    const cell = cells[j]; 
+                    if (cell) { 
+                        if (cell.textContent.toLowerCase().includes(filter)) {
+                            match = true;
+                            break;
+                        }
+                    }
+                }
+                rows[i].style.display = match ? "" : "none";
+            }
+        }
+        </script>     
+    </body>
+</html>

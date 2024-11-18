@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Página inicial</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/slide.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header style="position:fixed; top:0; left:0; z-index:1; width:100%"> 
+        <nav>
+            <img class="logo" src="../images/logo.png" height="60px" width="60px">
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#receitas">Receitas</a></li>
+                <li><a href="#form">Formulário</a></li>
+                <li><a th:href="@{/cadastro}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="wrapper">
+      <div class="slide-wrapper" data-slide="wrapper">
+          <div class="slide-nav-button slide-nav-previous fas fa-chevron-left" data-slide="nav-previous-button"></div>
+          <div class="slide-nav-button slide-nav-next fas fa-chevron-right" data-slide="nav-next-button"></div>
+          <div class="slide-list" data-slide="list">
+              <div class="slide-item" data-slide="item" data-index="0">
+                  <div class="slide-content">
+                    <button class="preparo"><i class="fa-solid fa-clock"></i> 40 min </button>
+                      <img class="slide-image" src="./images/receita1.jpg" alt="Torta de legumes" />
+                      <div class="slide-description">
+                        <h3>Torta de Legumes</h3>
+                          <p>Saudável e Fitness</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="slide-item" data-slide="item" data-index="1">
+                    <div class="slide-content">
+                        <button class="preparo"><i class="fa-solid fa-clock"></i> 75 min </button>
+                        <img class="slide-image" src="./images/receita2.jpg" alt="Pudim" />
+                         <div class="slide-description">
+                          <h3>Pudim</h3>
+                          <p>Sobremesa simples e rápida</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="slide-item" data-slide="item" data-index="2">
+                  <div class="slide-content">
+                    <button class="preparo"><i class="fa-solid fa-clock"></i> 35 min </button>
+                      <img class="slide-image" src="./images/receita3.jpg" alt="Pão de queijo" />
+                      <div class="slide-description">
+                          <h3>Pão de queijo</h3>
+                          <p>Lanche rápido</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="slide-item" data-slide="item" data-index="3">
+                  <div class="slide-content">
+                    <button class="preparo"><i class="fa-solid fa-clock"></i> 10 min </button>
+                      <img class="slide-image" src="./images/receita4.jpg" alt="Macarrão ao Molho Branco" />
+                      <div class="slide-description">
+                          <h3>Macarrão ao Molho Branco</h3>
+                          <p>Refeição rápida e prática</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="slide-item" data-slide="item" data-index="4">
+                <div class="slide-content">
+                    <button class="preparo"><i class="fa-solid fa-clock"></i> 25 min </button>
+                    <img class="slide-image" src="./images/receita5.jpg" alt="Lasanha de Presunto e Queijo" />
+                    <div class="slide-description">
+                        <h3>Lasanha de Presunto e Queijo</h3>
+                        <p>Refeição saborosa</p>
+                    </div>
+                </div>
+            </div>              
+          </div>
+          <div class="slide-controls" data-slide="controls-wrapper">
+          </div>
+      </div>
+  </div>
+  <script src="./js/slide.js"></script>
+  <script>
+      initSlider({
+          autoPlay: true,
+          startAtIndex: 0,
+          timeInterval: 4000
+      })
+  </script>
+
+  <section id="receitas" action="#form"class="more-recipes">
+    <h2 class="titulo">Mais Receitas</h2>
+    <div class="recipe-grid">
+        <div>       
+            <button class="tempo"><i class="fa-solid fa-clock"></i> 40 min </button>
+            <img src="./images/recipe1.jpg" alt="Bolo de chocolate"> 
+            <figcaption>Bolo de Chocolate</figcaption>
+        </div>
+
+        <div>
+            <button class="tempo"><i class="fa-solid fa-clock"></i> 30 min </button>
+            <img src="./images/recipe2.jpg" alt="Bolo de fubá">
+            <figcaption>Bolo de Fubá</figcaption>
+        </div>
+
+        <div>
+            <button class="tempo"><i class="fa-solid fa-clock"></i> 50 min </button>
+            <img src="./images/recipe3.jpg" alt="Mousse de Limão">
+            <figcaption>Moussse de Limão</figcaption>
+        </div>
+
+        <div>
+            <button class="tempo"><i class="fa-solid fa-clock"></i> 50 min </button>
+            <img src="./images/recipe4.jpg" alt="Mousse de Morango">
+            <figcaption>Mousse de Morango</figcaption>
+        </div>
+
+        <div>
+            <button class="tempo"><i class="fa-solid fa-clock"></i> 10 min </button>
+            <img src="./images/recipe5.jpg" alt="Pão com Ricota">
+            <figcaption>Pão com Ricota</figcaption>
+        </div>
+
+        <div>
+            <button class="tempo"><i class="fa-solid fa-clock"></i> 5 min </button>
+            <img src="./images/recipe6.jpg" alt="Pão com Ovo">
+            <figcaption>Pão com Ovo</figcaption>
+        </div>
+    </div>
+</section>
+
+
+    <!-- <div th:each="prato : ${pratos}">
+        <input type="checkbox" name="pratos" th:value="${prato.id}"/>
+        <div class="photo"><img th:src="@{/images/pratos/{fotoCaminho}(fotoCaminho=${prato.fotoCaminho})}" th:alt="${prato.nome}" width="90px"/></div>
+        <div class="details">
+            <p class="prato_nome" th:text="${prato.nome}"></p>
+            <p class="prato_descricao" th:text="${prato.descricao}"></p>
+            <p class="prato_preco" th:text="${prato.preco}"></p>
+            <input type="number" name="quantidadePrato" th:value="0" min="0" step="1"/>
+        </div>
+    </div> -->
+
+
+
+    <footer>
+        <h3 class="formulario-contato">Entre em contato</h3>
+        <form id="form" action="#form" method="post">
+            <input type="text" name="nome" placeholder="Seu nome" required>
+            <input type="email" name="email" placeholder="Seu email" required>
+            <textarea name="mensagem" placeholder="Digite sua mensagem" required></textarea>
+            <button type="submit"><b>Enviar</b></button>
+        </form>
+        
+        <button id="topo" class="fas fa-arrow-up"></button> 
+        <script>
+            const backToTopButton = document.getElementById('topo');
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 200) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+        </script>
+    </footer>
+</body>
+</html>

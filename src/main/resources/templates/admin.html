@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Admin</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <style>
+        body {
+            background: linear-gradient(135deg, #101E92 50%, #0d1773 50%);
+        }
+
+        .widgets, i {
+            text-decoration: none;
+            color: #101E92;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }
+
+        .widgets:hover, i:hover {
+            color: #0d1773;
+        }
+
+        i {
+            margin-left: 10px;
+        }
+    </style>
+    
+        <nav>
+            <img class="logo" src="./images/logo.png" height="60px" width="60px" style="margin: 15px;">
+            <ul>
+                <li><a th:href="@{/}">Sair</a></li>
+            </ul>
+        </nav>        
+
+    <div id="recipe" style="display: flex; justify-content: center; cursor:pointer; align-items: center; gap:20px; padding-top:50px">
+        <div style="width: 300px; height: 300px; background-color: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; justify-content: center; align-items: center">
+            <a class="widgets" th:href="@{/receita}"> Gerenciar Receitas </a>
+            <i class="fa-solid fa-utensils"></i>
+        </div>
+        <div id="user" style="width: 300px; height: 300px;  cursor:pointer; background-color: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; justify-content: center; align-items: center">
+            <a class="widgets" th:href="@{/listagem}">Gerenciar Usuário</a>
+            <i class="fa-solid fa-gear"></i>
+        </div>
+
+    <script>
+        //como fazer para quand
+        let recipe = document.getElementById('recipe');
+        
+        recipe.addEventListener('click', () => {
+            window.location.href = '/receita';
+        });
+
+        let user = document.getElementById('user');
+
+        user.addEventListener('click', () => {
+            window.location.href = '/listagem';
+        });
+    </script>
+
+
+    <!-- <form action="#" th:action="@{/administrador/add-novo-prato}" th:object="${prato}" method="post" enctype="multipart/form-data">
+        <input type="text" th:field="*{nome}" placeholder="Nome"/>
+        <textarea th:field="*{descricao}" placeholder="Descrição"></textarea>
+        <input type="number" th:field="*{preco}" placeholder="Preço"/>
+        <input type="file" name="foto" />
+        <button type="submit">Confirmar alteração</button>
+    </form> -->
+</body>
+</html>
