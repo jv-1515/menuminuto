@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bd</groupId>
-	<artifactId>sitebd</artifactId>
+	<artifactId>menuminuto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>sitebd</name>
+	<name>menuminuto</name>
 	<description>Aula banco de dados</description>
 	<url/>
 	<licenses>
