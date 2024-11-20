@@ -47,7 +47,7 @@ public class CadastroController {
 
     @GetMapping("/cadastro") 
     public String cadastro(Model model){
-        model.addAttribute("cliente", new Cliente("","",""));
+        model.addAttribute("cliente", new Cliente("","","",null));
         return "cadastro";
     }
 
@@ -80,6 +80,11 @@ public class CadastroController {
     @GetMapping("/admin")
     public String admin() {
         return "admin";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
 }

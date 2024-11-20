@@ -26,16 +26,17 @@ public class ClienteDAO {
     }
 
     public void inserir(Cliente cli){
-        String sql = "INSERT INTO cliente(nome,email,senha) VALUES (?,?,?);";
-        Object[] parametros = new Object[3];
+        String sql = "INSERT INTO cliente(nome,email,senha,nascimento) VALUES (?,?,?,?);";
+        Object[] parametros = new Object[4];
         parametros[0] = cli.getNome();
         parametros[1] = cli.getEmail();
         parametros[2] = cli.getSenha();
+        parametros[3] = cli.getNascimento();
         jdbc.update(sql,parametros);
     }
 
-    //[ {id: 1, nome: teste1, email: teste1@teste, senha: 123456}
-    //, {id: 2, nome: teste2, email: teste2@teste, senha: 123456}
+    //[ {id: 1, nome: teste1, email: teste1@teste, senha: 123456, nascimento: 2000-10-10}
+    //, {id: 2, nome: teste2, email: teste2@teste, senha: 123456, nascimento: 1997-10-10}
     //]
     public List<Map<String,Object>> obterTodosClientes(){
         String sql = "Select * from cliente;";
@@ -44,8 +45,8 @@ public class ClienteDAO {
 
     public void atualizarCliente(int id, Cliente cli){
         String sql = "UPDATE cliente SET ";
-        sql += "nome = ?, email = ?, senha = ? WHERE id = ?";
-        jdbc.update(sql, cli.getNome(), cli.getEmail(), cli.getSenha(), id);
+        sql += "nome = ?, email = ?, senha = ?, nascimento = ? WHERE id = ?";
+        jdbc.update(sql, cli.getNome(), cli.getEmail(), cli.getSenha(), cli.getNascimento(), id);
     }
 
     public Cliente obterCliente(int id){

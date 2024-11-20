@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
     <head>
-        <title>Listagem de Clientes</title>
+        <title>Listagem de Usuários</title>
         <link rel="stylesheet" href="./css/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />        
     </head>
@@ -72,7 +72,7 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Email</th>
-                    <th>Senha</th>
+                    <th>Data de Nascimento</th>
                     <th></th>
                 </tr>
             </thead>
@@ -81,7 +81,7 @@
                     <td th:text="${cliente.id}"></td>
                     <td th:text="${cliente.nome}"></td>
                     <td th:text="${cliente.email}"></td>
-                    <td th:text="${cliente.senha}"></td>
+                    <td th:text="${#dates.format(cliente.nascimento, 'dd/MM/yyyy')}"></td>                    
                     <td>
                       <a th:href="@{'/atualizar/' + ${cliente.id}}" style="text-decoration:none" class="editar" title="Editar"><i class="fa-solid fa-pencil" style="text-decoration:none"></i></a>
                       <form th:action="@{'/deletar/' + ${cliente.id}}" method="post" style="display:inline">

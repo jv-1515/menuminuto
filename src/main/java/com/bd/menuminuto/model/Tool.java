@@ -10,7 +10,9 @@ public class Tool {
         return new Cliente((Integer) registro.get("id")
                           ,(String) registro.get("nome")
                           ,(String) registro.get("email")
-                            ,(String) registro.get("senha"));
+                          ,(String) registro.get("senha")
+                          ,(java.sql.Date) registro.get("nascimento")
+                            );
     }
 
     public static Receita converterReceita(Map<String,Object> registro){

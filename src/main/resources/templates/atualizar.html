@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Cadastro</title>
+    <title>Atualizar</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="./css/styles.css">
 
@@ -31,7 +31,7 @@
             font-weight: bold;
         }
 
-        input[type="text"], input[type="password"], input[type="email"] {
+        input[type="text"], input[type="password"], input[type="email"], input[type="date"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -39,9 +39,10 @@
             border-radius: 4px;
             font-size: 1em;
             resize: none;
+            font-family: Arial, sans-serif;           
         }
 
-        input[type="submit"] {
+        button {
             width: 100%;
             padding: 10px;
             background-color: #FE8601;
@@ -53,7 +54,7 @@
             transition: background-color 0.3s ease;
         }
 
-        input[type="submit"]:hover {
+        button:hover {
             background-color: #db5603;
         }
 
@@ -68,10 +69,6 @@
             margin: 0 auto;
             justify-content: space-between;
         }
-
-        p input[type="text"]:focus {
-            outline: none;
-        }
     </style>
 </head>
 <body>
@@ -81,13 +78,16 @@
             <a th:href="@{/admin}" style="position: absolute; top: 0; right: 0; font-size: 24px; text-decoration: none;">&times;</a>
         </div>
         <br>
-        <h2>Atualizar informações</h2>
+        <h2 class="titulo">Atualizar informações</h2>
             
         Nome: <input type="text" th:field="*{nome}"><br>
+        Data de Nascimento: <input type="date" th:field="*{nascimento}"><br>
+        
         Email: <input type="email" th:field="*{email}"><br>
         Senha: <input type="text" th:field="*{senha}"><br>
         
-        <input type="submit" value="Atualizar" name="atualizar">
+        <!-- <button type="submit" value="Atualizar">Atualizar</button> -->
+        <button type="submit" value="Atualizar" name="atualizar">Atualizar</button>
     </form>
 </body>
 </html>

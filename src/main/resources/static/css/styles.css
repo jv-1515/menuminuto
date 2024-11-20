@@ -103,6 +103,16 @@ footer button:hover {
     background-color: #db5603; /* Laranja */
 }
 
+.redes {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    color: white;
+    background: #FE8601;
+    padding: 10px;
+    border-radius: 100%;
+}
+
 .formulario-contato{
   margin: 10px;
 }
