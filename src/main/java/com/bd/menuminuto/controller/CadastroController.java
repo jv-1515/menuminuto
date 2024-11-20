@@ -24,11 +24,6 @@ public class CadastroController {
     @Autowired
     private ApplicationContext context;
 
-    @GetMapping("/") 
-    public String Principal(){
-        return "principal"; 
-    }
-
     @GetMapping("/atualizar/{id}") 
     public String atualizar(Model model, @PathVariable int id){
         ClienteService cs = context.getBean(ClienteService.class);

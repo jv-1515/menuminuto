@@ -5,11 +5,12 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Atualizar Receita</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 
     <style>
         h2 {
             text-align: center;
+            margin-top: 0;
         }
 
         form {
@@ -17,11 +18,10 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 320px;
+            max-width: 600px;
             width: 100%;
             margin: 0 auto;
-            margin-top: 20px;
-            font-family: Arial, sans-serif;           
+            margin-top: 20px;           
         }
 
         label {
@@ -31,7 +31,7 @@
             font-weight: bold;
         }
 
-        input[type="text"], input[type="password"], input[type="email"] {
+        input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -56,29 +56,17 @@
         input[type="submit"]:hover {
             background-color: #db5603;
         }
-
+        
         body {
             background: linear-gradient(135deg, #101E92 50%, #0d1773 50%);
-        }
-
-        .logo {
-            height: 100px;
-            width: 100px;
-            display: block;
-            margin: 0 auto;
-            justify-content: space-between;
-        }
-
-        p input[type="text"]:focus {
-            outline: none;
         }
     </style>
 </head>
 <body>
 
-    <form th:action="@{'/atualizar/' + ${id}}" method="post" th:object="${cliente}"> 
+    <!-- <form th:action="@{'/receita/' + ${id}}" method="post" th:object="${receita}"> 
         <div style="position: relative;">
-            <a th:href="@{/admin}" style="position: absolute; top: 0; right: 0; font-size: 24px; text-decoration: none;">&times;</a>
+            <a th:href="@{/listagem-receita}" style="position: absolute; top: 0; right: 0; font-size: 24px; text-decoration: none;">&times;</a>
         </div>
         <br>
         <h2>Atualizar informações</h2>
@@ -88,6 +76,61 @@
         Senha: <input type="text" th:field="*{senha}"><br>
         
         <input type="submit" value="Atualizar" name="atualizar">
+    </form> -->
+
+    
+    <form th:action="@{/receita/' + ${id}}" method="post" th:object="${receita}" enctype="multipart/form-data">
+        <div style="position: relative;">
+            <a th:href="@{/listagem-receita}" style="position: absolute; top: 0; right: 0; font-size: 24px; text-decoration: none;">&times;</a>
+        </div>
+        <h2 class="titulo">Atualizar informações</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                Nome: <input type="text" th:field="*{nome}" required><br>
+                Descrição: <input type="text" th:field="*{descricao}"><br>
+                Tempo de preparo: <input type="number" th:field="*{preparo}" required><br>
+                <input type="submit" value="Cadastrar" name="cadastrar">
+            </div>
+    
+            <div>                
+                <div style="display: flex; justify-content: space-between">Foto: <i onclick="upload()" class="fa-solid fa-pencil" style="text-decoration:none; color:#333; display:none"></i></div>
+                <!-- <div onclick="upload()" id="image-preview" style="width: 272px; height: 186px; cursor:pointer; border-radius:4px; border: 2px dashed #ccc; display: flex; font-size: 14px; color: #aaa; overflow: hidden; background-color: #f9f9f9;; align-items: center; justify-content: center"> -->
+                    <img th:src="@{/uploads/{imagem}(imagem=${receita.imagem})}">
+                    <i class="fa-regular fa-image" style="font-size: 30px"></i>
+                    <input type="file" id="foto" name="foto" accept="image/*" onchange="previewImage(event)" style="display:none">
+                </div>
+            </div>
+        </div>
     </form>
+
+    <script>
+        function upload() {
+            document.getElementById('foto').click();
+            document.querySelector('.fa-solid.fa-pencil').style.display = 'none';
+        }
+
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.getElementById('image-preview');
+    
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.style.backgroundImage = `url(${e.target.result})`;
+                    preview.style.backgroundSize = "cover";
+                    preview.style.backgroundPosition = "center";                  
+                    preview.style.border = "none";
+                    document.querySelector('.fa-regular.fa-image').style.display = 'none';
+                    document.querySelector('.fa-solid.fa-pencil').style.display = 'block';
+
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+    
+
+
 </body>
 </html>

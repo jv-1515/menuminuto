@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.bd.menuminuto.model.Receita;
 import com.bd.menuminuto.model.ReceitaService;
 import com.bd.menuminuto.model.Tool;
@@ -28,6 +29,19 @@ import jakarta.websocket.server.PathParam;
 public class ReceitaController {
     @Autowired
     private ApplicationContext context;
+
+    @GetMapping("/") 
+    public String principal(Model model){
+        ReceitaService cs = context.getBean(ReceitaService.class);
+        List<Map<String,Object>> lista = cs.obterTodasReceitas();
+        List<Receita> listaReceitas = new ArrayList<Receita>();
+        for(Map<String,Object> registro : lista){
+            listaReceitas.add(Tool.converterReceita(registro));
+        }
+        model.addAttribute("receitas", listaReceitas);
+        return "principal";
+    }
+
 
     @GetMapping("/receita/{id}") 
     public String atualizarReceita(Model model, @PathVariable int id){
@@ -51,27 +65,28 @@ public class ReceitaController {
         return "cadastro-receita";
     }
 
-    @PostMapping("/receita")
-    public String cadastrarReceita(Model model, @ModelAttribute Receita rec){
-        ReceitaService cs = context.getBean(ReceitaService.class);
-        cs.inserir(rec);
-        return "admin";
-    }
-
     // @PostMapping("/receita")
-    // public String cadastrarReceita(Model model, @ModelAttribute Receita rec, @RequestParam("foto") MultipartFile foto){
+    // public String cadastrarReceita(Model model, @ModelAttribute Receita rec){
     //     ReceitaService cs = context.getBean(ReceitaService.class);
-    //     if (foto != null && !foto.isEmpty()) {
-    //         if (UploadUtil.fazerUploadImagem(foto)) {
-    //             rec.setImagem(foto.getOriginalFilename());
-    //         } else {
-    //             return "admin";
-    //         }
-    //     }
     //     cs.inserir(rec);
     //     return "admin";
-
     // }
+
+    @PostMapping("/receita")
+    public String cadastrarReceita(Model model, @ModelAttribute Receita rec, @RequestParam("foto") MultipartFile foto){
+        ReceitaService cs = context.getBean(ReceitaService.class);
+        if (foto != null && !foto.isEmpty()) {
+            if (UploadUtil.fazerUploadImagem(foto)) {
+                String img = foto.getOriginalFilename();
+                rec.setImagem(img);
+            } else {
+                return "admin";
+            }
+        }
+        cs.inserir(rec);
+        return "admin";
+
+    }
 
     @GetMapping("/receita")
     public String listagemReceita(Model model){

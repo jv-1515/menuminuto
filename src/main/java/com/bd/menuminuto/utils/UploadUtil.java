@@ -12,8 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class UploadUtil {
 
-    @Value("${upload.image.directory}")
-    private static String pastaUploadImagem;
+    private static String pastaUploadImagem = "src/main/resources/static/uploads";
     
         public static boolean fazerUploadImagem(MultipartFile imagem) {
             boolean sucessoUpload = false;

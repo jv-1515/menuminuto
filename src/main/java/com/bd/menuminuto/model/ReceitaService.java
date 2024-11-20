@@ -14,8 +14,6 @@ public class ReceitaService {
     ReceitaDAO cdao;
 
     public void inserir(Receita rec){
-        String caminhoImg = "";
-        rec.setImagem(caminhoImg);
         cdao.inserir(rec);
     }
 

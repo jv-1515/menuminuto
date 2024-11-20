@@ -5,9 +5,12 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Atualizar</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 
     <style>
+        *{
+            box-sizing: border-box;
+        }
         h2 {
             text-align: center;
         }
@@ -75,7 +78,7 @@
 
     <form th:action="@{'/atualizar/' + ${id}}" method="post" th:object="${cliente}"> 
         <div style="position: relative;">
-            <a th:href="@{/admin}" style="position: absolute; top: 0; right: 0; font-size: 24px; text-decoration: none;">&times;</a>
+            <a th:href="@{/listagem}" style="position: absolute; top: 0; right: 0; font-size: 24px; text-decoration: none;">&times;</a>
         </div>
         <br>
         <h2 class="titulo">Atualizar informações</h2>

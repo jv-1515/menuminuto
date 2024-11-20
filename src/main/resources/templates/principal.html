@@ -133,17 +133,17 @@
     </div>
 </section>
 
-
-    <!-- <div th:each="prato : ${pratos}">
-        <input type="checkbox" name="pratos" th:value="${prato.id}"/>
-        <div class="photo"><img th:src="@{/images/pratos/{fotoCaminho}(fotoCaminho=${prato.fotoCaminho})}" th:alt="${prato.nome}" width="90px"/></div>
-        <div class="details">
-            <p class="prato_nome" th:text="${prato.nome}"></p>
-            <p class="prato_descricao" th:text="${prato.descricao}"></p>
-            <p class="prato_preco" th:text="${prato.preco}"></p>
-            <input type="number" name="quantidadePrato" th:value="0" min="0" step="1"/>
+<section id="receitas" action="#form"class="more-recipes">
+    <h2 class="titulo">Mais Receitas</h2>
+    <div class="recipe-grid">
+        <div th:each="receita : ${receitas}">
+            <button class="tempo"><i class="fa-solid fa-clock"></i> <span th:text="${receita.preparo}"></span> min</button>
+            <img th:src="@{/uploads/{imagem}(imagem=${receita.imagem})}" th:alt="${receita.descricao}">
+            <figcaption th:text="${receita.nome}"></figcaption>
         </div>
-    </div> -->
+    </div>
+</section>
+
 
 
 
