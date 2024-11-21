@@ -104,10 +104,13 @@ footer button:hover {
 }
 
 .redes{
-    display: flex;
-    margin: 20px;
-    color: white;
-    padding: 0;
+  display: flex;
+  margin-top: 20px;
+  color: white;
+  padding: 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .formulario-contato{
