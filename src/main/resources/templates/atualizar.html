@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org" lang="pt-br">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Atualizar</title>
+    <title>Atualizar Usuário</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="/css/styles.css">
-
+    <link rel="icon" href="../images/logo.png" type="image/png"> 
     <style>
         *{
             box-sizing: border-box;
@@ -89,8 +89,25 @@
         Email: <input type="email" th:field="*{email}"><br>
         Senha: <input type="text" th:field="*{senha}"><br>
         
-        <!-- <button type="submit" value="Atualizar">Atualizar</button> -->
-        <button type="submit" value="Atualizar" name="atualizar">Atualizar</button>
+        <button type="submit" value="Atualizar" name="atualizar">Confirmar alterações</button>
     </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Dados atualizados com sucesso!",
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false,
+                timerProgressBar: true,
+            }).then(() => {
+                this.submit();
+            });
+        });
+    </script>
+
 </body>
 </html>

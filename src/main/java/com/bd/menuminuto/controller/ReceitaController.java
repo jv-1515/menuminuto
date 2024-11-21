@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +29,7 @@ public class ReceitaController {
     @Autowired
     private ApplicationContext context;
 
+    //inicio
     @GetMapping("/") 
     public String principal(Model model){
         ReceitaService cs = context.getBean(ReceitaService.class);
@@ -42,7 +42,7 @@ public class ReceitaController {
         return "principal";
     }
 
-
+    //atualizar-receita
     @GetMapping("/receita/{id}") 
     public String atualizarReceita(Model model, @PathVariable int id){
         ReceitaService cs = context.getBean(ReceitaService.class);
@@ -52,6 +52,7 @@ public class ReceitaController {
         return "atualizar-receita";
     }
 
+    @GetMapping("/receita/{id}/imagem")
     @PostMapping("/receita/{id}")
     public String atualizarReceita(@PathVariable int id, @ModelAttribute Receita rec){
         ReceitaService cs = context.getBean(ReceitaService.class);
@@ -59,28 +60,31 @@ public class ReceitaController {
         return "redirect:/receita";
     }
 
+    //cadastro-receita
     @GetMapping("/cadastro-receita")
     public String cadastroReceita(Model model){
         model.addAttribute("receita", new Receita("","",0,""));
         return "cadastro-receita";
     }
 
+    //explique o que é feito nesse método
+
     @PostMapping("/receita")
-    public String cadastrarReceita(Model model, @ModelAttribute Receita rec, @RequestParam("foto") MultipartFile foto){
-        ReceitaService cs = context.getBean(ReceitaService.class);
-        if (foto != null && !foto.isEmpty()) {
-            if (UploadUtil.fazerUploadImagem(foto)) {
+    public String cadastrarReceita(Model model, @ModelAttribute Receita rec, @RequestParam("foto") MultipartFile foto){ //recebe os dados do formulário e a imagem
+        ReceitaService cs = context.getBean(ReceitaService.class); 
+        if (foto != null && !foto.isEmpty()) { 
+            if (UploadUtil.fazerUploadImagem(foto)) { 
                 String img = foto.getOriginalFilename();
                 rec.setImagem(img);
-            } else {
+            } else { 
                 return "listagem-receita";
             }
         }
         cs.inserir(rec);
-        return "listagem-receita";
-
+        return "redirect:/receita";
     }
 
+    //listagem de receitas
     @GetMapping("/receita")
     public String listagemReceita(Model model){
         ReceitaService cs = context.getBean(ReceitaService.class);
@@ -93,6 +97,7 @@ public class ReceitaController {
         return "listagem-receita";
     }
 
+    //deletar receita
     @PostMapping("/deletar-receita/{id}")
     public String deletarReceita(@PathVariable int id){
         ReceitaService cs = context.getBean(ReceitaService.class);

@@ -114,6 +114,20 @@ footer button:hover {
   justify-content: center;
 }
 
+//crie para cada rede social seu hover com a cor oficial, com a classe do fonte awesome
+
+.fab.fa-facebook:hover{
+  color: #3b5998;
+}
+
+.fab.fa-instagram:hover{
+  color: #e4405f;
+}
+
+.fab.fa-twitter:hover{
+  color: #1da1f2;
+}
+
 .formulario-contato{
   margin: 10px;
 }
@@ -241,7 +255,6 @@ footer button:hover {
   height:33px;
   width: 33px;
   border-radius: 4px;
-  background-color: #FE8601; /* Laranja */
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -249,12 +262,13 @@ footer button:hover {
   text-align: center;
 }
 
-.editar:hover{
-  background-color: #db5603; 
-}
-
 .editar{
   padding:8px;
+  background-color: #1980ea;
+}
+
+.editar:hover{
+  background-color: blue; 
 }
 
 .excluir{

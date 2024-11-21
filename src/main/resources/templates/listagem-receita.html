@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org" lang="pt-br">
     <head>
-        <title>Listagem de Receitas</title>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Gerenciamento de Receitas</title>
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />        
+        <link rel="icon" href="../images/logo.png" type="image/png"> 
     </head>
     <body>
       <header>
@@ -106,9 +109,6 @@
             </div>
         </div>
 
-
-
-        
      
         <table class="user-table">
             <thead>
@@ -136,6 +136,32 @@
             </tbody>
         </table>
 
+        <script>
+
+            // Filtrar receitas na tabela
+            function searchTable() { 
+                const input = document.getElementById("nome"); 
+                const table = document.getElementById("tbl");
+                const rows = table.getElementsByTagName("tr");
+                const filter = input.value.toLowerCase(); 
+    
+                for (let i = 0; i < rows.length; i++) {
+                    const cells = rows[i].getElementsByTagName("td");  
+                    let match = false;
+                    for (let j = 0; j < cells.length; j++) {
+                        const cell = cells[j]; 
+                        if (cell) { 
+                            if (cell.textContent.toLowerCase().includes(filter)) {
+                                match = true;
+                                break;
+                            }
+                        }
+                    }
+                    rows[i].style.display = match ? "" : "none";
+                }
+            }
+            </script> 
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             function confirmDelete(event, button) {
@@ -162,31 +188,11 @@
                     }
                 });
             }
-        </script> 
+        </script>
         <script>
-
-        // Função para filtrar receitas na tabela
-        function searchTable() { 
-            const input = document.getElementById("nome"); 
-            const table = document.getElementById("tbl");
-            const rows = table.getElementsByTagName("tr");
-            const filter = input.value.toLowerCase(); 
-
-            for (let i = 0; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName("td");  
-                let match = false;
-                for (let j = 0; j < cells.length; j++) {
-                    const cell = cells[j]; 
-                    if (cell) { 
-                        if (cell.textContent.toLowerCase().includes(filter)) {
-                            match = true;
-                            break;
-                        }
-                    }
-                }
-                rows[i].style.display = match ? "" : "none";
-            }
-        }
+            document.querySelector('.cadastrar-btn').addEventListener('click', () => {
+                window.location.href = '/cadastro-receita';
+            });
         </script>     
     </body>
 </html>
