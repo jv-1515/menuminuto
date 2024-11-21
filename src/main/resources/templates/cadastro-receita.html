@@ -20,7 +20,7 @@
     <style>
         h2 {
             text-align: center;
-            margin-top: 0;
+            margin-bottom: 30px;
         }
 
         form {
@@ -31,7 +31,8 @@
             max-width: 600px;
             width: 100%;
             margin: 0 auto;
-            margin-top: 20px;           
+            margin-top: 20px;
+            font-family: Arial, sans-serif;           
         }
 
         label {
@@ -41,7 +42,7 @@
             font-weight: bold;
         }
 
-        input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+        input[type="text"], input[type="password"], input[type="email"], input[type="number"], textarea{
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -49,6 +50,12 @@
             border-radius: 4px;
             font-size: 1em;
             resize: none;
+        }
+
+        textarea {
+            height: 112px;
+            font-family: Arial, sans-serif;           
+
         }
 
         input[type="submit"] {
@@ -79,19 +86,19 @@
         <h2 class="titulo">Cadastrar nova receita</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div>
-                Nome: <input type="text" th:field="*{nome}" required><br>
-                Descrição: <input type="text" th:field="*{descricao}"><br>
-                Tempo de preparo: <input type="number" th:field="*{preparo}" required><br>
-                <input type="submit" value="Cadastrar" name="cadastrar">
+                Nome: <input type="text" th:field="*{nome}" placeholder="Nome da receita" required><br>
+                Descrição: <textarea rows="4" cols="30" th:field="*{descricao}" required placeholder="0/200"></textarea><br>
+                Tempo de preparo (min): <input type="number" th:field="*{preparo}" value="5" required><br>
             </div>
     
             <div>                
-                <div style="display: flex; justify-content: space-between">Foto: <i onclick="upload()" class="fa-solid fa-pencil" style="text-decoration:none; color:#333; display:none"></i></div>
+                <div style="display: flex; justify-content: space-between">Foto: <i onclick="upload()" class="fa-solid fa-pencil" style="text-decoration:none; color:#333; display:none; cursor:pointer;"></i></div>
                 <div onclick="upload()" id="image-preview" style="width: 272px; height: 186px; cursor:pointer; border-radius:4px; border: 2px dashed #ccc; display: flex; font-size: 14px; color: #aaa; overflow: hidden; background-color: #f9f9f9;; align-items: center; justify-content: center">
                     <i class="fa-regular fa-image" style="font-size: 30px"></i>
 
                     <input type="file" id="foto" name="foto" accept="image/*" onchange="previewImage(event)" style="display:none">
                 </div>
+                <input type="submit" value="Cadastrar" name="cadastrar" style="margin-top: 38px">
             </div>
         </div>
     </form>

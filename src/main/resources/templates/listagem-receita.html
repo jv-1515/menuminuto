@@ -36,9 +36,8 @@
                 max-width: 800px;
             }
         
-            /* Estilo da barra de pesquisa */
             .pesquisa {
-                flex: 4; /* Ocupa 4/5 do espaço */
+                flex: 4;
             }
         
             .search-bar {
@@ -110,26 +109,6 @@
 
 
         
-        <!-- <style>
-            .search-container {
-                position: relative;
-                width: 80%;
-                max-width: 800px;
-                margin: 20px auto;
-            }
-        
-            input[type="text"] {
-                width: 100%;
-                padding: 12px 40px 12px 12px; /* Adicionando espaço à direita para o ícone */
-                border: 1px solid #ddd;
-                background-color: #fff;
-                border-radius: 8px;
-                font-size: 16px;
-            }
-        
- 
-            }
-        </style> -->
      
         <table class="user-table">
             <thead>
@@ -137,7 +116,6 @@
                     <th>ID</th>
                     <th>Foto</th>
                     <th>Nome</th>
-                    <th>Descrição</th>
                     <th>Preparo</th>
                     <th></th>
                 </tr>
@@ -145,13 +123,12 @@
             <tbody id="tbl">
                 <tr th:each="receita : ${receitas}">
                     <td th:text="${receita.id}"></td>
-                    <td style="padding: 5px;"><img th:src="@{/uploads/{imagem}(imagem=${receita.imagem})}" style="height: 38px; width:42; border-radius:100%"></td>
+                    <td style="padding: 5px;"><img th:src="@{/uploads/{imagem}(imagem=${receita.imagem})}"></td>
                     <td th:text="${receita.nome}"></td>
-                    <td th:text="${receita.descricao}"></td>
                     <td th:text="${receita.preparo}"></td>
                     <td>
                       <a th:href="@{'/receita/' + ${receita.id}}" style="text-decoration:none" class="editar" title="Editar"><i class="fa-solid fa-pencil" style="text-decoration:none"></i></a>
-                      <form th:action="@{'/deletar/' + ${receita.id}}" method="delete" style="display:inline">
+                      <form th:action="@{'/deletar-receita/' + ${receita.id}}" method="post" style="display:inline">
                           <button type="submit" class="excluir" title="Excluir" onclick="confirmDelete(event, this)"><i class="fa-solid fa-trash"></i></button>
                       </form>
                   </td>
@@ -188,7 +165,7 @@
         </script> 
         <script>
 
-        // Função para filtrar usuários na tabela
+        // Função para filtrar receitas na tabela
         function searchTable() { 
             const input = document.getElementById("nome"); 
             const table = document.getElementById("tbl");

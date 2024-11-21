@@ -100,17 +100,14 @@ footer button {
 }
 
 footer button:hover {
-    background-color: #db5603; /* Laranja */
+    background-color: #db5603;
 }
 
-.redes {
+.redes{
     display: flex;
-    justify-content: center;
     margin: 20px;
     color: white;
-    background: #FE8601;
-    padding: 10px;
-    border-radius: 100%;
+    padding: 0;
 }
 
 .formulario-contato{
@@ -269,6 +266,12 @@ footer button:hover {
 
 .user-table th, .user-table td {
   vertical-align: middle;
+}
+
+.user-table img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
 }
 
 form a {

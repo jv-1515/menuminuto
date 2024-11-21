@@ -56,7 +56,7 @@ public class ReceitaController {
     public String atualizarReceita(@PathVariable int id, @ModelAttribute Receita rec){
         ReceitaService cs = context.getBean(ReceitaService.class);
         cs.atualizarReceita(id, rec);
-        return "redirect:/listagem-receita";
+        return "redirect:/receita";
     }
 
     @GetMapping("/cadastro-receita")
@@ -64,13 +64,6 @@ public class ReceitaController {
         model.addAttribute("receita", new Receita("","",0,""));
         return "cadastro-receita";
     }
-
-    // @PostMapping("/receita")
-    // public String cadastrarReceita(Model model, @ModelAttribute Receita rec){
-    //     ReceitaService cs = context.getBean(ReceitaService.class);
-    //     cs.inserir(rec);
-    //     return "admin";
-    // }
 
     @PostMapping("/receita")
     public String cadastrarReceita(Model model, @ModelAttribute Receita rec, @RequestParam("foto") MultipartFile foto){
@@ -100,15 +93,10 @@ public class ReceitaController {
         return "listagem-receita";
     }
 
-    @DeleteMapping("/receita/{id}")
+    @PostMapping("/deletar-receita/{id}")
     public String deletarReceita(@PathVariable int id){
         ReceitaService cs = context.getBean(ReceitaService.class);
         cs.deletarReceita(id);
-        return "redirect:/listagem-receita";
+        return "redirect:/receita";
     }    
-
-    @GetMapping("/atualizar-receita")
-    public String atualizarReceita() {
-        return "atualizar-receita";
-    }
 }

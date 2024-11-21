@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS cliente (
 CREATE TABLE IF NOT EXISTS receitas (
     id SERIAL PRIMARY KEY,
     nome VARCHAR (50),
-    descricao VARCHAR (100),
+    descricao TEXT,
     preparo INT,
     imagem TEXT
 );
