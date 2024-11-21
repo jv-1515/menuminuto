@@ -2,7 +2,7 @@ package com.bd.menuminuto.model;
 
 import java.sql.Date;
 
-public class Cliente {
+public class Usuario {
     
     private int id;
     private String nome;
@@ -11,19 +11,19 @@ public class Cliente {
     private Date nascimento;
 
 
-    public Cliente(){
+    public Usuario(){
         
     }
 
-    //Sobrecarga dos construtores Cliente
-    public Cliente(int id, String nome, String email, String senha, Date nascimento) {
+    //Sobrecarga dos construtores Usuario
+    public Usuario(int id, String nome, String email, String senha, Date nascimento) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.nascimento = nascimento;
     }
-    public Cliente(String nome, String email, String senha, Date nascimento) {
+    public Usuario(String nome, String email, String senha, Date nascimento) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;

@@ -12,7 +12,7 @@ public class Receita {
         
     }
 
-    //Sobrecarga dos construtores Cliente
+    //Sobrecarga dos construtores Receita
     public Receita(int id, String nome, String descricao, Integer preparo, String imagem) {
         this.id = id;
         this.nome = nome;

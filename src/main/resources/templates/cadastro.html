@@ -87,7 +87,7 @@
 
     </style>
 
-    <form th:action="@{/cadastro}" method="post" th:object="${cliente}">
+    <form th:action="@{/cadastro}" method="post" th:object="${usuario}">
         <div style="position: relative;">
             <a th:href="@{/}" style="position: absolute; top: 0; right: 0; font-size: 24px; text-decoration: none;">&times;</a>
         </div>
@@ -108,6 +108,8 @@
         </div>
 
         <button type="submit" value="Cadastrar" name="cadastrar">Cadastrar</button>
+
+        <a th:href="@{/login}" style="font-size: 14px; padding-top:20x; margin-top:15px; padding-bottom:0; text-align:center">Já possui conta? Faça login</a>
     </form>
     <script>
         function togglePassword() {

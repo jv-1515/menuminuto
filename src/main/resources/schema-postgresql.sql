@@ -1,5 +1,5 @@
 /* Serial = inteiro e autoincrement */
-CREATE TABLE IF NOT EXISTS cliente (
+CREATE TABLE IF NOT EXISTS usuario (
     id serial PRIMARY KEY, 
     nome varchar(50),
     email varchar(50),

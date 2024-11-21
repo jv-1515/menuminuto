@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import jakarta.annotation.PostConstruct;
 
 @Repository
-public class ClienteDAO {
+public class UsuarioDAO {
     /* DAO = Data Acssess Object */
 
     @Autowired
@@ -25,37 +25,37 @@ public class ClienteDAO {
         jdbc = new JdbcTemplate(dataSource);
     }
 
-    public void inserir(Cliente cli){
-        String sql = "INSERT INTO cliente(nome,email,senha,nascimento) VALUES (?,?,?,?);";
+    public void inserir(Usuario usu){
+        String sql = "INSERT INTO usuarios(nome,email,senha,nascimento) VALUES (?,?,?,?);";
         Object[] parametros = new Object[4];
-        parametros[0] = cli.getNome();
-        parametros[1] = cli.getEmail();
-        parametros[2] = cli.getSenha();
-        parametros[3] = cli.getNascimento();
+        parametros[0] = usu.getNome();
+        parametros[1] = usu.getEmail();
+        parametros[2] = usu.getSenha();
+        parametros[3] = usu.getNascimento();
         jdbc.update(sql,parametros);
     }
 
     //[ {id: 1, nome: teste1, email: teste1@teste, senha: 123456, nascimento: 2000-10-10}
     //, {id: 2, nome: teste2, email: teste2@teste, senha: 123456, nascimento: 1997-10-10}
     //]
-    public List<Map<String,Object>> obterTodosClientes(){
-        String sql = "Select * from cliente;";
+    public List<Map<String,Object>> obterTodosUsuarios(){
+        String sql = "SELECT * FROM usuarios;";
         return jdbc.queryForList(sql);
     }
 
-    public void atualizarCliente(int id, Cliente cli){
-        String sql = "UPDATE cliente SET ";
+    public void atualizarUsuario(int id, Usuario usu){
+        String sql = "UPDATE usuarios SET ";
         sql += "nome = ?, email = ?, senha = ?, nascimento = ? WHERE id = ?";
-        jdbc.update(sql, cli.getNome(), cli.getEmail(), cli.getSenha(), cli.getNascimento(), id);
+        jdbc.update(sql, usu.getNome(), usu.getEmail(), usu.getSenha(), usu.getNascimento(), id);
     }
 
-    public Cliente obterCliente(int id){
-        String sql = "Select * from cliente where id = ?";
-        return Tool.converterCliente(jdbc.queryForMap(sql,id));
+    public Usuario obterUsuario(int id){
+        String sql = "SELECT * FROM usuarios WHERE id = ?";
+        return Tool.converterUsuario(jdbc.queryForMap(sql,id));
     }
 
-    public void deletarCliente(int id){
-        String sql = "DELETE FROM cliente where id = ?";
+    public void deletarUsuario(int id){
+        String sql = "DELETE FROM usuarios WHERE id = ?";
         jdbc.update(sql,id);
     }
 }

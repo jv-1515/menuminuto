@@ -80,14 +80,14 @@
                 </tr>
             </thead>
             <tbody id="tbl">
-                <tr th:each="cliente : ${clientes}">
-                    <td th:text="${cliente.id}"></td>
-                    <td th:text="${cliente.nome}"></td>
-                    <td th:text="${cliente.email}"></td>
-                    <td th:text="${#dates.format(cliente.nascimento, 'dd/MM/yyyy')}"></td>                    
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.id}"></td>
+                    <td th:text="${usuario.nome}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    <td th:text="${#dates.format(usuario.nascimento, 'dd/MM/yyyy')}"></td>                    
                     <td>
-                      <a th:href="@{'/atualizar/' + ${cliente.id}}" style="text-decoration:none" class="editar" title="Editar"><i class="fa-solid fa-pencil" style="text-decoration:none"></i></a>
-                      <form th:action="@{'/deletar-usuario/' + ${cliente.id}}" method="post" style="display:inline">
+                      <a th:href="@{'/atualizar/' + ${usuario.id}}" style="text-decoration:none" class="editar" title="Editar"><i class="fa-solid fa-pencil" style="text-decoration:none"></i></a>
+                      <form th:action="@{'/deletar-usuario/' + ${usuario.id}}" method="post" style="display:inline">
                           <button type="submit" class="excluir" title="Excluir" onclick="confirmDelete(event, this)"><i class="fa-solid fa-trash"></i></button>
                       </form>
                   </td>
@@ -115,7 +115,7 @@
                     } else {
                         Swal.fire({
                             title: "Cancelado",
-                            text: "O cliente não foi excluído!",
+                            text: "O usuário não foi excluído!",
                             icon: "error"
                         });
                     }
