@@ -73,11 +73,11 @@ public class ReceitaController {
                 String img = foto.getOriginalFilename();
                 rec.setImagem(img);
             } else {
-                return "admin";
+                return "listagem-receita";
             }
         }
         cs.inserir(rec);
-        return "admin";
+        return "listagem-receita";
 
     }
 

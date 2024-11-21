@@ -216,3 +216,21 @@ function initSlider({startAtIndex = 0, autoPlay = true, timeInterval = 3000}) {
     setVisibleSlide({ index: startAtIndex + 2, animate: true })
     setAutoPlay()
 }
+
+
+const descriptionDiv = document.querySelector('.descricao');
+const slideImages = document.querySelectorAll('.slide-image');
+
+descriptionDiv.addEventListener('mouseenter', function() {
+    slideImages.forEach(function(image) {
+        image.style.filter = 'brightness(70%)';
+        image.style.transition = 'transform 0.5s';
+    });
+});
+
+descriptionDiv.addEventListener('mouseleave', function() {
+    slideImages.forEach(function(image) {
+        image.style.filter = '';
+        image.style.transition = '';
+    });
+});
