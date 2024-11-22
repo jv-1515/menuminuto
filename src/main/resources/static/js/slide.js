@@ -19,11 +19,13 @@ const state = {
     timeInterval: 0
 }
 
+//mover o slide
 function translateSlide({ position }) {
     state.savedPosition = position
     slideList.style.transform = `translateX(${position}px)`
 }
 
+//posição do slide
 function getCenterPosition({ index }) {
     const slideItem = slideItems[index]
     const slideWidth = slideItem.clientWidth
@@ -33,6 +35,7 @@ function getCenterPosition({ index }) {
     return position
 }
 
+//mudar o slide
 function setVisibleSlide({ index, animate }) {
     if(index === 0 || index === slideItems.length - 1) {
         index = state.currentSlideIndex
@@ -52,6 +55,7 @@ function previousSlide() {
     setVisibleSlide({ index: state.currentSlideIndex - 1, animate: true})
 }
 
+//botões de controle dinâmicos
 function createControlButtons() {
     slideItems.forEach(function(){
         const controlButton = document.createElement('button')
@@ -63,6 +67,7 @@ function createControlButtons() {
     })
 }
 
+//botão de controle ativo
 function activeControlButton({ index }) {
     const slideItem = slideItems[index]
     const dataIndex = Number(slideItem.dataset.index)
@@ -73,6 +78,7 @@ function activeControlButton({ index }) {
     if(controlButton) controlButton.classList.add('active')
 }
 
+//clonar os slides
 function createSlideClones() {
     const firstSlide = slideItems[0].cloneNode(true)
     firstSlide.classList.add('slide-cloned')
@@ -98,6 +104,7 @@ function createSlideClones() {
     slideItems = document.querySelectorAll('[data-slide="item"]')
 }
 
+//clique e arraste
 function onMouseDown(event, index) {
     const slideItem = event.currentTarget
     state.startingPoint = event.clientX
@@ -107,12 +114,14 @@ function onMouseDown(event, index) {
     slideItem.addEventListener('mousemove', onMouseMove)
 }
 
+//mover o slide
 function onMouseMove(event) {
     state.movement = event.clientX - state.startingPoint
     const position = event.clientX - state.currentPoint
     translateSlide({ position })
 }
 
+//soltar o slide
 function onMouseUp(event) {
     const pointsToMove = event.type.includes('touch') ? 50 : 150
     if(state.movement < -pointsToMove) {
@@ -127,6 +136,7 @@ function onMouseUp(event) {
     slideItem.removeEventListener('mousemove', onMouseMove)
 }
 
+//clique e arraste no celular
 function onTouchStart(event, index) {
     event.clientX = event.touches[0].clientX
     onMouseDown(event, index)
@@ -160,6 +170,7 @@ function onSlideListTransitionEnd() {
     }
 }
 
+//autoplay
 function setAutoPlay() {
     if(state.autoPlay) {
         slideInterval = setInterval(function() {
@@ -168,6 +179,7 @@ function setAutoPlay() {
     }
 }
 
+//adicionar eventos
 function setListeners() {
     controlButtons = document.querySelectorAll('[data-slide="control-button"]')
     controlButtons.forEach(function(controlButton, index) {
@@ -207,6 +219,7 @@ function setListeners() {
     })
 }
 
+//iniciar o slider
 function initSlider({startAtIndex = 0, autoPlay = true, timeInterval = 3000}) {
     state.autoPlay = autoPlay
     state.timeInterval = timeInterval
@@ -217,7 +230,7 @@ function initSlider({startAtIndex = 0, autoPlay = true, timeInterval = 3000}) {
     setAutoPlay()
 }
 
-
+//escurecer imagens
 const slides = document.querySelectorAll('.slide-content');
 
 slides.forEach(function(slide) {

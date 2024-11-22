@@ -127,7 +127,29 @@
         }
     </style>
 
-    <form th:action="@{'/receita/' + ${id}}" method="post" th:object="${receita}" enctype="multipart/form-data">
+    
+    <form th:action="@{'/receita/' + ${id}}" method="post" th:object="${receita}" enctype="multipart/form-data" style="padding-bottom: 18px;">
+        <div style="position: relative;">
+            <a th:href="@{/receita}" style="position: absolute; top: 0; right: 0; font-size: 24px; text-decoration: none;">&times;</a>
+        </div>
+        <h2 class="titulo">Atualizar receita</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                Nome: <input type="text" th:field="*{nome}" placeholder="Nome da receita" required><br>
+                Descrição: <textarea rows="4" cols="30" th:field="*{descricao}" required placeholder="0/200"></textarea><br>
+                Tempo de preparo (min): <input type="number" th:field="*{preparo}" value="5" required><br>
+                Foto: <input type="text" th:field="*{imagem}" required placeholder="URL da imagem"><br>
+      
+                <input type="submit" value="Confirmar alterações" name="Confirmar alterações" style="margin-top: 38px">
+            </div>
+        </div>
+    </form>
+
+
+  
+
+<!-- 
+    <form th:action="@{'/receita/' + ${id}}" method="post" th:object="${receita}" enctype="multipart/form-data" style="padding-bottom: 18px;">
         <div style="position: relative;">
             <a th:href="@{/receita}" style="position: absolute; top: 0; right: 0; font-size: 24px; text-decoration: none;">&times;</a>
         </div>
@@ -150,8 +172,10 @@
                 <input type="submit" value="Confirmar alterações" name="Confirmar alterações" style="margin-top: 38px">
             </div>
         </div>
-    </form>
-    <script>
+    </form> -->
+
+    
+    <!-- <script>
         function upload() {
             document.getElementById('foto').click();
             document.querySelector('#original').style.display = 'none';
@@ -177,7 +201,8 @@
             }
         }
 
-    </script>
+    </script> -->
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.querySelector('form').addEventListener('submit', function(event) {

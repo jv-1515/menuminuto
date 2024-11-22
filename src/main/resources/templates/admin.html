@@ -32,7 +32,7 @@
         }
 
         #widgets div:hover {
-            filter: brightness(90%);
+            filter: brightness(95%);
         }
 
         #widgets div {
@@ -41,12 +41,12 @@
 
     </style>
     
-        <nav>
-            <img class="logo" src="./images/logo.png" height="60px" width="60px" style="margin: 15px;">
-            <ul>
-                <li><a th:href="@{/}">Sair</a></li>
-            </ul>
-        </nav>        
+    <nav>
+        <img class="logo" src="./images/logo.png" height="60px" width="60px" style="margin: 15px;">
+        <ul>
+            <li><a th:href="@{/}">Sair</a></li>
+        </ul>
+    </nav>        
 
     <div id="widgets" style="display: flex; justify-content: center; cursor:pointer; align-items: center; gap:20px; padding-top:50px">
         <div id="recipe" style="width: 300px; height: 300px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; justify-content: center; align-items: center">
@@ -57,6 +57,8 @@
             <a class="widgets" th:href="@{/listagem}">Gerenciar Usuários</a>
             <i class="fa-solid fa-gear"></i>
         </div>
+    </div>
+
 
     <script>
         let recipe = document.getElementById('recipe');

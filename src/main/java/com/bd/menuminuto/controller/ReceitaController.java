@@ -52,7 +52,6 @@ public class ReceitaController {
         return "atualizar-receita";
     }
 
-    @GetMapping("/receita/{id}/imagem")
     @PostMapping("/receita/{id}")
     public String atualizarReceita(@PathVariable int id, @ModelAttribute Receita rec){
         ReceitaService cs = context.getBean(ReceitaService.class);

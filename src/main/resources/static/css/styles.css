@@ -114,8 +114,6 @@ footer button:hover {
   justify-content: center;
 }
 
-//crie para cada rede social seu hover com a cor oficial, com a classe do fonte awesome
-
 .fab.fa-facebook:hover{
   color: #3b5998;
 }
@@ -186,7 +184,7 @@ footer button:hover {
   top: 0;
 }
 
-.dot {
+/* .dot {
   cursor: pointer;
   height: 10px;
   width: 10px;
@@ -195,10 +193,10 @@ footer button:hover {
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
-}
+} */
 
 .active, .dot:hover {
-  background-color: lightgrey;
+  background-color: grey; 
 }
 
 .fade {
