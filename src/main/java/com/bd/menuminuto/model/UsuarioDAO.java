@@ -39,7 +39,7 @@ public class UsuarioDAO {
     //, {id: 2, nome: teste2, email: teste2@teste, senha: 123456, nascimento: 1997-10-10}
     //]
     public List<Map<String,Object>> obterTodosUsuarios(){
-        String sql = "SELECT * FROM usuarios;";
+        String sql = "SELECT * FROM usuarios ORDER BY id;";
         return jdbc.queryForList(sql);
     }
 

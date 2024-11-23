@@ -53,8 +53,17 @@ public class ReceitaController {
     }
 
     @PostMapping("/receita/{id}")
-    public String atualizarReceita(@PathVariable int id, @ModelAttribute Receita rec){
+    public String atualizarReceita(@PathVariable int id, @ModelAttribute Receita rec, @RequestParam("foto") MultipartFile foto){ 
         ReceitaService cs = context.getBean(ReceitaService.class);
+            if (foto != null && !foto.isEmpty()) { 
+                Receita recAntiga = cs.obterReceita(id);
+                if (!recAntiga.getImagem().equals(rec.getImagem())) {
+                    if (UploadUtil.fazerUploadImagem(foto)) { 
+                        String img = foto.getOriginalFilename();
+                        rec.setImagem(img);
+                    } 
+                }
+            }        
         cs.atualizarReceita(id, rec);
         return "redirect:/receita";
     }

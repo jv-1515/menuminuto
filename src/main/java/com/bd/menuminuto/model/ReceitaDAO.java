@@ -34,7 +34,7 @@ public class ReceitaDAO {
     }
 
     public List<Map<String,Object>> obterTodasReceitas(){
-        String sql = "Select * from receitas;";
+        String sql = "SELECT * FROM receitas ORDER BY id;";
         return jdbc.queryForList(sql);
     }
 
@@ -45,12 +45,12 @@ public class ReceitaDAO {
     }
 
     public Receita obterReceita(int id){
-        String sql = "Select * from receitas where id = ?";
+        String sql = "SELECT * FROM receitas WHERE id = ?";
         return Tool.converterReceita(jdbc.queryForMap(sql,id));
     }
 
     public void deletarReceita(int id){
-        String sql = "DELETE FROM receitas where id = ?";
+        String sql = "DELETE FROM receitas WHERE id = ?";
         jdbc.update(sql,id);
     }
 }
