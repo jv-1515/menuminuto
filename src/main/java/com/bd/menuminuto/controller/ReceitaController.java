@@ -42,7 +42,7 @@ public class ReceitaController {
         return "principal";
     }
 
-    //atualizar-receita
+    //atualizar receita
     @GetMapping("/receita/{id}") 
     public String atualizarReceita(Model model, @PathVariable int id){
         ReceitaService cs = context.getBean(ReceitaService.class);
@@ -53,12 +53,16 @@ public class ReceitaController {
     }
 
     @PostMapping("/receita/{id}")
-    public String atualizarReceita(@PathVariable int id, @ModelAttribute Receita rec, @RequestParam("foto") MultipartFile foto){ 
+    public String atualizarReceita(@PathVariable int id, @ModelAttribute Receita rec, @RequestParam("foto") MultipartFile foto){
         ReceitaService cs = context.getBean(ReceitaService.class);
-            if (foto != null && !foto.isEmpty()) { 
+            //verifica se a imagem é válida
+            if (foto != null && !foto.isEmpty()) {
                 Receita recAntiga = cs.obterReceita(id);
-                if (!recAntiga.getImagem().equals(rec.getImagem())) {
-                    if (UploadUtil.fazerUploadImagem(foto)) { 
+                //verifica se são diferentes
+                if (recAntiga.getImagem() == null || recAntiga.getImagem() != rec.getImagem()) {
+                    boolean uploadRealizado = UploadUtil.fazerUploadImagem(foto);
+                    if (uploadRealizado) { 
+                        //guarda o nome da imagem
                         String img = foto.getOriginalFilename();
                         rec.setImagem(img);
                     } 
@@ -68,20 +72,22 @@ public class ReceitaController {
         return "redirect:/receita";
     }
 
-    //cadastro-receita
+    //cadastro receita
     @GetMapping("/cadastro-receita")
     public String cadastroReceita(Model model){
         model.addAttribute("receita", new Receita("","",0,""));
         return "cadastro-receita";
     }
 
-    //explique o que é feito nesse método
-
     @PostMapping("/receita")
-    public String cadastrarReceita(Model model, @ModelAttribute Receita rec, @RequestParam("foto") MultipartFile foto){ //recebe os dados do formulário e a imagem
+    public String cadastrarReceita(Model model, @ModelAttribute Receita rec, @RequestParam("foto") MultipartFile foto){ 
         ReceitaService cs = context.getBean(ReceitaService.class); 
+        //verifica se a imagem é válida
         if (foto != null && !foto.isEmpty()) { 
-            if (UploadUtil.fazerUploadImagem(foto)) { 
+            //faz o upload da imagem
+            boolean uploadRealizado = UploadUtil.fazerUploadImagem(foto);
+            if (uploadRealizado) { 
+                //guarda o nome da imagem
                 String img = foto.getOriginalFilename();
                 rec.setImagem(img);
             } else { 
@@ -95,7 +101,7 @@ public class ReceitaController {
     //listagem de receitas
     @GetMapping("/receita")
     public String listagemReceita(Model model){
-        ReceitaService cs = context.getBean(ReceitaService.class);
+        ReceitaService cs = context.getBean(ReceitaService.class); 
         List<Map<String,Object>> lista = cs.obterTodasReceitas();
         List<Receita> listaReceitas = new ArrayList<Receita>();
         for(Map<String,Object> registro : lista){

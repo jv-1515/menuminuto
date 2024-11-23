@@ -23,7 +23,6 @@
         </nav>
     </header>
 
-
     <div class="wrapper">
       <div class="slide-wrapper" data-slide="wrapper">
           <div class="slide-nav-button slide-nav-previous fas fa-chevron-left" data-slide="nav-previous-button"></div>
@@ -79,42 +78,43 @@
                     </div>
                 </div>
             </div>              
-          </div>
-          <div class="slide-controls" data-slide="controls-wrapper">
-          </div>
-      </div>
-  </div>
-  <script src="./js/slide.js"></script>
-  <script>
-      initSlider({
-          autoPlay: true,
-          startAtIndex: 0,
-          timeInterval: 4000
-      })
-  </script>
-<section id="receitas" action="#form"class="more-recipes">
-    <h2 class="titulo">Mais Receitas</h2>
-    <div class="recipe-grid">
-        <div th:each="receita : ${receitas}">
-            <button class="tempo"><i class="fa-solid fa-clock"></i> <span th:text="${receita.preparo}"></span> min</button>
-            <img th:src="@{/uploads/{imagem}(imagem=${receita.imagem})}" th:alt="${receita.descricao}">
-            <figcaption th:text="${receita.nome}"></figcaption>
+            </div>
+                <div class="slide-controls" data-slide="controls-wrapper">
+            </div>
         </div>
     </div>
-</section>
+    
+    <script src="./js/slide.js"></script>
+    <script>
+        initSlider({
+            autoPlay: true,
+            startAtIndex: 0,
+            timeInterval: 4000
+        })
+    </script>
 
+    <section id="receitas" action="#form"class="more-recipes">
+        <h2 class="titulo">Mais Receitas</h2>
+        <div class="recipe-grid">
+            <div th:each="receita : ${receitas}">
+                <button class="tempo"><i class="fa-solid fa-clock"></i> <span th:text="${receita.preparo}"></span> min</button>
+                <img th:src="@{/uploads/{imagem}(imagem=${receita.imagem})}" th:alt="${receita.descricao}">
+                <figcaption th:text="${receita.nome}"></figcaption>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div style="display: flex;">
 
             <div style="align-items:self-start; font-size: 25px">
-                <a class="redes" style="margin-top: 70px;"><i class="fab fa-facebook-f"></i></a>
+                <a class="redes" style="margin-top: 120px;"><i class="fab fa-facebook-f"></i></a>
                 <a class="redes"><i class="fab fa-instagram"></i></a>
                 <a class="redes"><i class="fab fa-twitter"></i></a>
             </div>
+
                 <form id="form" action="#form" method="post">
                     <h3 class="formulario-contato">Entre em contato</h3>
-
                     <input type="text" name="nome" placeholder="Seu nome" required>
                     <input type="email" name="email" placeholder="Seu email" required>
                     <textarea name="mensagem" placeholder="Digite sua mensagem" rows="4" cols="30" required></textarea>

@@ -35,7 +35,7 @@ public class CadastroController {
     }
 
     @PostMapping("/atualizar/{id}")
-    public String atualizar(@PathVariable int id, @ModelAttribute Usuario usu){
+    public String atualizar(@PathVariable int id, @ModelAttribute Usuario usu){ 
         UsuarioService cs = context.getBean(UsuarioService.class);
         cs.atualizarUsuario(id, usu);
         return "redirect:/listagem";
@@ -44,7 +44,7 @@ public class CadastroController {
     //cadastro
     @GetMapping("/cadastro") 
     public String cadastro(Model model){
-        model.addAttribute("usuario", new Usuario("","","",null));
+        model.addAttribute("usuario", new Usuario("","","",null)); //cria um novo usuario
         return "cadastro";
     }
 
@@ -59,7 +59,7 @@ public class CadastroController {
     @GetMapping("/listagem")
     public String listagem(Model model){
         UsuarioService cs = context.getBean(UsuarioService.class);
-        List<Map<String,Object>> lista = cs.obterTodosUsuarios();
+        List<Map<String,Object>> lista = cs.obterTodosUsuarios(); //chama o obtterTodosUsuarios do service
         List<Usuario> listaUsuarios = new ArrayList<Usuario>();
         for(Map<String,Object> registro : lista){
             listaUsuarios.add(Tool.converterUsuario(registro));
@@ -87,5 +87,4 @@ public class CadastroController {
     public String login() {
         return "login";
     }
-
 }

@@ -8,8 +8,7 @@ public class Receita {
     private Integer preparo;
     private String imagem;
 
-    public Receita(){
-        
+    public Receita(){   
     }
 
     //Sobrecarga dos construtores Receita
@@ -20,6 +19,7 @@ public class Receita {
         this.preparo = preparo;
         this.imagem = imagem;
     }
+    
     public Receita(String nome, String descricao, Integer preparo, String imagem) {
         this.nome = nome;
         this.descricao = descricao;

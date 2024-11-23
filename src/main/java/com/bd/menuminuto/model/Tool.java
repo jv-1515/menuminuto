@@ -11,8 +11,7 @@ public class Tool {
                           ,(String) registro.get("nome")
                           ,(String) registro.get("email")
                           ,(String) registro.get("senha")
-                          ,(java.sql.Date) registro.get("nascimento")
-                            );
+                          ,(java.sql.Date) registro.get("nascimento"));
     }
 
     public static Receita converterReceita(Map<String,Object> registro){
